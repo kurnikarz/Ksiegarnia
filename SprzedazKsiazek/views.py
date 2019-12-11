@@ -1,17 +1,14 @@
 from django.http import HttpResponse
 from .models import *
-<<<<<<< HEAD
 from .serializers import *
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
-=======
 from rest_framework import status
 from rest_framework.decorators import api_view
 from .serializers import *
->>>>>>> 02ed1f6d3e590b07865e924a50d456b657637f2d
 from django.http import JsonResponse
 from rest_framework.response import Response
 from django.shortcuts import render
@@ -20,7 +17,6 @@ from rest_framework import permissions
 from django.http import Http404
 
 # Create your views here.
-<<<<<<< HEAD
 
 class klient_list(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -72,8 +68,6 @@ class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-=======
->>>>>>> 02ed1f6d3e590b07865e924a50d456b657637f2d
 @api_view(['GET','POST'])
 def klient_list(request):
     if request.method == 'GET':
@@ -84,11 +78,8 @@ def klient_list(request):
     if request.method == 'POST':
         serializer = klientSerializer(data=request.data)
         if serializer.is_valid():
-<<<<<<< HEAD
             serializer.save(owner=self.request.user)
-=======
             serializer.save()
->>>>>>> 02ed1f6d3e590b07865e924a50d456b657637f2d
             #return Response(serializer.data, status.HTTP_201_CREATED)
             return JsonResponse(serializer.data, status.HTTP_201_CREATED)
         #return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
@@ -130,10 +121,6 @@ def pracownik_list(request):
         #return JsonResponse(serializer.data, status.HTTP_400_BAD_REQUEST)
         return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 02ed1f6d3e590b07865e924a50d456b657637f2d
 @api_view(['GET','PUT','DELETE'])
 def pracownik_detail(request, pk):
     try:
@@ -151,7 +138,6 @@ def pracownik_detail(request, pk):
         return JsonResponse(serializer.data, status.HTTP_400_BAD_REQUEST)
     if request.method == 'DELETE':
         pracownik.delete()
-<<<<<<< HEAD
         return Response(status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET','POST'])
@@ -220,7 +206,5 @@ def ksiazka_detail(request, pk):
         return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
     if request.method == 'DELETE':
         ksiazka.delete()
-        return Response*status.HTTP_204_NO_CONTENT
-=======
         return Response(status.HTTP_204_NO_CONTENT)
->>>>>>> 02ed1f6d3e590b07865e924a50d456b657637f2d
+
