@@ -13,6 +13,14 @@ class kategoriaSerializer(serializers.ModelSerializer):
         model = kategoria
         fields = ['idKategoria','nazwa']
 
+class QuestionSerializer(serializers.ModelSerializer):
+    tworca = serializers.ReadOnlyField(source='tworca.username')
+
+    class Meta:
+        model = klient
+        fields = ['id', 'question_text', 'pub_date', 'tworca']
+
+
 class autorSerializer(serializers.ModelSerializer):
     class Meta:
         model = autor

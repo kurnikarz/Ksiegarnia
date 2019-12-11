@@ -136,3 +136,71 @@ def pracownik_detail(request, pk):
     if request.method == 'DELETE':
         pracownik.delete()
         return Response(status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET','POST'])
+def autor_list(request):
+    if request.method == 'GET':
+        autorzy = autorSerializer.objects.all()
+        serializer = autorSerializer(autorzy, many=True)
+        #return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
+    if request.method == 'POST':
+        serializer = autorSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            #return JsonResponse(serializer.data, status.HTTP_201_CREATED)
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        #return JsonResponse(serializer.data, status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET','PUT','DELETE'])
+def autor_detail(request, pk):
+    try :
+        autor = autor.objects.get(pk=pk)
+    except autor.DoesNotExist:
+        return HttpResponse(status=404)
+    if request.method == 'GET':
+        serializer = autorSerializer(autor)
+        return Response(serializer.data)
+    if request.method == 'PUT':
+        serializer = autorSerializer(autor, request.data)
+        if serializer.is_valid():
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
+    if request.method == 'DELETE':
+        autor.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET','POST'])
+def ksiazka_list(request):
+    if request.method == 'GET':
+        ksiazki = ksiazkaSerializer.objects.all()
+        serializer = ksiazkaSerializer(ksiazki, many=True)
+        #return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
+    if request.method == 'POST':
+        serializer = ksiazkaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            #return JsonResponse (serializer.data, status.HTTP_201_CREATED)
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        #return JsonResponse(serializer.data, status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET','PUT','DELETE'])
+def ksiazka_detail(request, pk):
+    try:
+        ksiazka = ksiazka.objects.get(pk=pk)
+    except ksiazka.DoesNotExist:
+        return HttpResponse(status=404)
+    if request.method == 'GET':
+        serializer = ksiazkaSerializer(ksiazka)
+        return Response(serializer.data)
+    if request.method == 'PUT':
+        serializer = ksiazkaSerializer(ksiazka, request.data)
+        if serializer.is_valid():
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
+    if request.method == 'DELETE':
+        ksiazka.delete()
+        return Response*status.HTTP_204_NO_CONTENT
