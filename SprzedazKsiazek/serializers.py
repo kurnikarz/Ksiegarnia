@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
     klient = serializers.PrimaryKeyRelatedField(many=True, queryset=klient.objects.all())
     class Meta:
         model = User
-        fields = ['idKsiazka', 'nazwa', 'rokWydania', 'cena', 'idAutor', 'idKategoria']
+        fields = ['idUser', 'username', 'klient']
 
 class kategoriaSerializer(serializers.ModelSerializer):
     class Meta:
