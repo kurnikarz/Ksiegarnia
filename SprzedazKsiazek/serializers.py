@@ -13,6 +13,7 @@ class kategoriaSerializer(serializers.ModelSerializer):
         model = kategoria
         fields = ['idKategoria','nazwa']
 
+<<<<<<< HEAD
 class QuestionSerializer(serializers.ModelSerializer):
     tworca = serializers.ReadOnlyField(source='tworca.username')
 
@@ -21,6 +22,8 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = ['id', 'question_text', 'pub_date', 'tworca']
 
 
+=======
+>>>>>>> 02ed1f6d3e590b07865e924a50d456b657637f2d
 class autorSerializer(serializers.ModelSerializer):
     class Meta:
         model = autor
@@ -32,11 +35,17 @@ class ksiazkaSerializer(serializers.ModelSerializer):
         fields = ['idKsiazka','nazwa','rokWydania','cena','idAutor','idKategoria']
 
 class klientSerializer(serializers.ModelSerializer):
+<<<<<<< HEAD
     tworca = serializers.ReadOnlyField(source='tworca.username')
 
     class Meta:
         model = klient
         fields = ['idKlient','imie','nazwisko','pesel','nrKontaktowy', 'tworca']
+=======
+    class Meta:
+        model = klient
+        fields = ['idKlient','imie','nazwisko','pesel','nrKontaktowy']
+>>>>>>> 02ed1f6d3e590b07865e924a50d456b657637f2d
 
 class pracownikSerializer(serializers.ModelSerializer):
     class Meta:

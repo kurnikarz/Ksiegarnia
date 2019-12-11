@@ -18,9 +18,14 @@ from django.urls import path, include
 from Ksiegarnia.SprzedazKsiazek import views
 
 urlpatterns = [
+<<<<<<< HEAD
     path('klienci', views.UserList.as_view()),
     path('klienci/<int:pk>', views.UserDetail.as_view()),
     path('pracownicy', views.pracownik_list),
     path('pracownicy/<int:pk>', views.pracownik_detail),
     path('api-auth/', include('rest_framework.urls')),
+=======
+    path('admin/', admin.site.urls),
+    path('SprzedazKsiazek/', include('SprzedazKsiazek.urls')),
+>>>>>>> 02ed1f6d3e590b07865e924a50d456b657637f2d
 ]
