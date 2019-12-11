@@ -7,7 +7,7 @@ class kategoria(models.Model):
     nazwa = models.CharField(max_length=45)
 
 class autor(models.Model):
-    idAutor = models.AutoField(primary_key=True);
+    idAutor = models.AutoField(primary_key=True)
     imie = models.CharField(max_length=45)
     nazwisko = models.CharField(max_length=45)
 
@@ -25,6 +25,7 @@ class klient(models.Model):
     nazwisko = models.CharField(max_length=45)
     pesel = models.CharField(max_length=11)
     nrKontaktowy = models.CharField(max_length=12)
+    tworca = models.ForeignKey('auth.User', related_name='klient', on_delete=models.CASCADE)
 
 class pracownik(models.Model):
     idPracownik = models.AutoField(primary_key=True)

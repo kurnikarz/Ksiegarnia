@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Ksiegarnia.SprzedazKsiazek import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('SprzedazKsiazek/', include('SprzedazKsiazek.urls')),
+    path('klienci', views.UserList.as_view()),
+    path('klienci/<int:pk>', views.UserDetail.as_view()),
+    path('pracownicy', views.pracownik_list),
+    path('pracownicy/<int:pk>', views.pracownik_detail),
+    path('api-auth/', include('rest_framework.urls')),
 ]
