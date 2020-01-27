@@ -2,19 +2,6 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
 
-class UserSerializer(serializers.ModelSerializer):
-    klient = serializers.PrimaryKeyRelatedField(many=True, queryset=klient.objects.all())
-    class Meta:
-        model = User
-        fields = ['username', 'klient']
-
-class QuestionSerializer(serializers.ModelSerializer):
-    tworca = serializers.ReadOnlyField(source='tworca.username')
-
-    class Meta:
-        model = klient
-        fields = ['id', 'question_text', 'pub_date', 'tworca']
-
 class kategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = kategoria

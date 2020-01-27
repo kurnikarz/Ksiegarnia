@@ -28,7 +28,6 @@ class pracownik(models.Model):
     pesel = models.CharField(max_length=11)
     nrKontaktowy = models.CharField(max_length=12)
     zarobki = models.FloatField()
-    tworca = models.ForeignKey('auth.User', related_name='pracownik', on_delete=models.CASCADE)
 
 class zamowienia(models.Model):
     Ksiazka = models.ForeignKey(ksiazka, on_delete=models.CASCADE)

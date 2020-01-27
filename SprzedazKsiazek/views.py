@@ -23,7 +23,7 @@ class klient_list(APIView):
     def post(self, request, format=None):
         serializer = klientSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(owner=self.request.user)
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -65,7 +65,7 @@ class pracownik_list(APIView):
     def post(self, request, format=None):
         serializer = pracownikSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(owner=self.request.user)
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -95,14 +95,6 @@ class pracownik_detail(APIView):
         question = self.get_object(pk)
         question.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 @api_view(['GET','POST'])
 def autor_list(request):
@@ -160,8 +152,9 @@ def ksiazka_detail(request, pk):
     if request.method == 'PUT':
         serializer = ksiazkaSerializer(ksiazki, request.data)
         if serializer.is_valid():
+            serializer.save()
             return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
     if request.method == 'DELETE':
-        ksiazka.delete()
+        ksiazki.delete()
         return Response(status.HTTP_204_NO_CONTENT)
