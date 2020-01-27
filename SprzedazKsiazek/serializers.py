@@ -31,11 +31,10 @@ class ksiazkaSerializer(serializers.ModelSerializer):
         fields = ['id','nazwa','rokWydania','cena','Autor','Kategoria']
 
 class klientSerializer(serializers.ModelSerializer):
-    tworca = serializers.ReadOnlyField(source='tworca.username')
 
     class Meta:
         model = klient
-        fields = ['id','imie','nazwisko','pesel','nrKontaktowy', 'tworca']
+        fields = ['id','imie','nazwisko','pesel','nrKontaktowy']
 
 class pracownikSerializer(serializers.ModelSerializer):
     class Meta:
